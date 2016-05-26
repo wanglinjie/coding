@@ -1,4 +1,5 @@
 # date:20160526
+# -*- coding:utf-8 -*-
 class Solution(object):
     def missingNumber(self, nums):
         """
@@ -13,6 +14,7 @@ Given nums = [0, 1, 3] return 2.
 Note:
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
         """
+        # 注意题目中并没有说列表是有序的，所以是无序排列的
         n = len(nums)
         return (n * (n+1) >> 1) - sum(nums)
 
