@@ -1,21 +1,21 @@
-import heapq
-import itertools
-class Solution(object):
-    def nthSuperUglyNumber(self, n, primes):
-        """
-        :type n: int
-        :type primes: List[int]
-        :rtype: int
-        """
-        uglies = [1]
-        merged = heapq.merge(*map(lambda p: (u*p for u in uglies), primes))
-        uniqed = (u for u, _ in itertools.groupby(merged))
-        map(uglies.append, itertools.islice(uniqed, n-1))
-        return uglies[-1]
+# import heapq
+# import itertools
+# class Solution(object):
+#     def nthSuperUglyNumber(self, n, primes):
+#         """
+#         :type n: int
+#         :type primes: List[int]
+#         :rtype: int
+#         """
+#         uglies = [1]
+#         merged = heapq.merge(*map(lambda p: (u*p for u in uglies), primes))
+#         uniqed = (u for u, _ in itertools.groupby(merged))
+#         map(uglies.append, itertools.islice(uniqed, n-1))
+#         return uglies[-1]
 
 
-so = Solution()
-print so.nthSuperUglyNumber(4, [2, 5, 7, 13])
+# so = Solution()
+# print so.nthSuperUglyNumber(4, [2, 5, 7, 13])
 
 
 # class Solution {
