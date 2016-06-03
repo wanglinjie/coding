@@ -28,6 +28,21 @@ If nums = [1,2,3], a solution is:
   []
 ]
         """
+        # start = time.time()
+        # nums_len = len(nums)
+        # if not nums_len:
+        #     return [[]]
+        # nums = sorted(nums)
+        # ret = [[]]
+        # # last = [[]]
+        # for num in xrange(nums_len):
+        #     temp = [nums[num]]
+        #     now = copy.deepcopy(ret)
+        #     for i in ret:
+        #         now.append(i+temp)
+        #     ret = now
+        # print time.time() - start
+        # return ret
         start = time.time()
         nums_len = len(nums)
         if not nums_len:
@@ -37,10 +52,13 @@ If nums = [1,2,3], a solution is:
         # last = [[]]
         for num in xrange(nums_len):
             temp = [nums[num]]
-            now = copy.deepcopy(ret)
-            for i in ret:
-                now.append(i+temp)
-            ret = now
+            # now = copy.deepcopy(ret)
+            # 记录当前时刻ret中内容，避免使用list拷贝
+            ret_len = len(ret)
+            for i in xrange(ret_len):
+            # for i in ret:
+                ret.append(ret[i]+temp)
+            # ret = now
         print time.time() - start
         return ret
             
