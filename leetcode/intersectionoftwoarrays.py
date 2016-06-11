@@ -23,6 +23,7 @@ The result can be in any order.
         dict_1 = {}
         ret_dic = {}
         ret = []
+        # 使用字典，加快查找
         for i in nums1:
             dict_1[i] = True
         for i in nums2:
