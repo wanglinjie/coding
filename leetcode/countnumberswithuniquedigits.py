@@ -39,18 +39,20 @@ Given n = 2, return 91.
                 continue
 
             # 整数中有0
-            have_zero = 1
+            mul_sum = 1
             for j in xrange(i-1):
-                have_zero *= (9-j)
-            have_zero *= (i-1)
+                mul_sum *= (9-j)
+            have_zero = mul_sum *(i-1)
             ret += have_zero
 
             # 整数中没有0
             no_zero = 1
-            for j in xrange(i):
-                no_zero *= (9-j)
+            # for j in xrange(i):
+            #     no_zero *= (9-j)
+            no_zero = mul_sum * (9 - (i-1))
             ret += no_zero
         return ret
 
 so = Solution()
-print so.countNumbersWithUniqueDigits(2)
+print so.countNumbersWithUniqueDigits(10)
+
