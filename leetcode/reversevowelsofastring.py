@@ -31,19 +31,40 @@ Given s = "leetcode", return "leotcede".
         '''
         下面方法是将字符串中元音字母提取出来，单独将元音字母倒置，然后重新写入字符列表中
         '''
-        vowels_list = []
-        vowels_position = []
-        for i in xrange(s_len):
-            if s_list[i] in vowels_dic:
-                vowels_list.append(s_list[i])
-                vowels_position.append(i)
-        vowels_len = len(vowels_list)
-        # vowels_position.reverse()
-        for i in xrange(vowels_len):
-            s_list[vowels_position[vowels_len-1-i]] = vowels_list[i]
-            # s_list[vowels_position[i]] = vowels_list[i]
+        # vowels_list = []
+        # vowels_position = []
+        # for i in xrange(s_len):
+        #     if s_list[i] in vowels_dic:
+        #         vowels_list.append(s_list[i])
+        #         vowels_position.append(i)
+        # vowels_len = len(vowels_list)
+        # # vowels_position.reverse()
+        # for i in xrange(vowels_len):
+        #     s_list[vowels_position[vowels_len-1-i]] = vowels_list[i]
+        #     # s_list[vowels_position[i]] = vowels_list[i]
+
+        '''
+        下面方法是使用两个指针，一个从头向尾移动，另一个从尾向头移动
+        '''
+        i = 0
+        j = s_len - 1
+        while i < j:
+            if (s_list[i] in vowels_dic) and (s_list[j] in vowels_dic):
+                temp = s_list[i]
+                s_list[i] = s_list[j]
+                s_list[j] = temp
+                i += 1
+                j -= 1
+            elif (s_list[i] in vowels_dic):
+                j -= 1
+            elif (s_list[j] in vowels_dic):
+                i += 1
+            else:
+                i += 1
+                j -= 1
+
         return "".join(s_list)
 
-s = "leetcOde"
+s = "helumalo"
 so = Solution()
 print so.reverseVowels(s)
