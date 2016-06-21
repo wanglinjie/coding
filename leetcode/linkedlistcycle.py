@@ -18,6 +18,9 @@ Given a linked list, determine if it has a cycle in it.
 
 Follow up:
 Can you solve it without using extra space?
+
+使用两个指针指向链表，一个向前移动的速度快些，一个要慢，查看连个指针是否指向同一个节点
+如果是则有环，遇到None则表示链表没有环
         """
         if not head:
             return False
