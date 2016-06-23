@@ -67,7 +67,7 @@ public ListNode detectCycle(ListNode head) {
     }
     return pointer1;
 }
-		"""
+        """
         if (not head) or (not head.next) or (not head.next.next):
             return None
         first = head.next
