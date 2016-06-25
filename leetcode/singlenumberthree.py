@@ -21,6 +21,8 @@ The order of the result is not important. So in the above example, [5, 3] is als
 Your algorithm should run in linear runtime complexity. 
 Could you implement it using only constant space complexity?
         """
+
+        # 下面的实现比较low，没有按照要求来，使用空间为o(n)
         nums_dic = {}
         for i in nums:
             if i not in nums_dic:
