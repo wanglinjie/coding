@@ -13,6 +13,10 @@ determine if the input string is valid.
 
 The brackets must close in the correct order, 
 "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+
+思路简单，就是遍历字符串，如果是左括号则入栈，如果是右括号则判断栈顶是否和当前括号成对
+如果成对则栈顶元素弹出
+如果不成对，则返回False
         """
         if not s:
             return True
