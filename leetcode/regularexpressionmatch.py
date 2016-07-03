@@ -3,6 +3,7 @@
 # date:20160703
 
 class Solution(object):
+    hash = None
     def isMatch(self, s, p):
         """
         :type s: str
@@ -38,7 +39,69 @@ isMatch("aab", "c*a*b") → true
 那么递归对于剩下的(i,j+2),(i+1,j+2),...,(i+k,j+2)都要尝试（j+2是因为跳过当前和下一个'*'字符）。 
 实现代码如下：
         """
-        return self.recursive_match(s, p, 0, 0)
+        if self.hash is None:
+            self.hash = {}
+        key = s + p
+        if key in self.hash:
+            return self.hash[key]
+            
+        if p == '':
+            return s == ''
+        if s == '':
+            if len(p) % 2 == 1:
+                return False
+            i = 1
+            while i < len(p):
+                if p[i] != '*':
+                    return False
+                i += 2
+            return True
+        
+        if len(p) > 1 and p[1] == '*':
+            if p[0] == '.':
+                self.hash[key] = self.isMatch(s[1:], p) or self.isMatch(s, p[2:])
+            elif p[0] == s[0]:
+                self.hash[key] = self.isMatch(s[1:], p) or self.isMatch(s, p[2:])
+            else:
+                self.hash[key] = self.isMatch(s, p[2:])
+        elif p[0] == '.':
+            self.hash[key] = self.isMatch(s[1:], p[1:])
+        else:
+            self.hash[key] = s[0] == p[0] and self.isMatch(s[1:], p[1:])
+        
+        return self.hash[key]
+        # if (not s) and (not p):
+        #     return True
+        # if not p:
+        #     return False
+        # res = [[False] * (len(p) + 1)] * (len(s) + 1)
+        # res[0][0] = True
+        # for j in xrange(len(p)):
+        #     if p[j] == "*":
+        #         if (j > 0) and (res[0][j-1]):
+        #             res[0][j+1] = True
+        #         if j < 1:
+        #             continue
+        #         if (p[j-1] != "."):
+        #             for i in xrange(len(s)):
+        #                 if (res[i+1][j] or ((j > 0) and res[i+1][j-1]) or ((i > 0) and (j > 0) and res[i][j+1] and s[i]==s[i-1] and s[i-1]==p[j-1])):
+        #                     res[i+1][j+1] = True
+        #         else:
+        #             i = 0
+        #             while ((j > 0) and (i < len(s)) and (not res[i+1][j-1]) and (not res[i+1][j])):
+        #                 i += 1
+        #             while i < len(s):
+        #                 res[i+1][j+1] = True
+        #                 i += 1
+        #     else:
+        #         for i in xrange(len(s)):
+        #             if (s[i] == p[j]) or (p[j] == "."):
+        #                 res[i+1][j+1] = res[i][j]
+        # return res[len(s)][len(p)]
+
+
+        # brute force
+        # return self.recursive_match(s, p, 0, 0)
 
     def recursive_match(self, s, p, i, j):
         if j == len(p):
@@ -61,6 +124,8 @@ isMatch("aab", "c*a*b") → true
 
 s = "aaaaaaaaaaaaab"
 p = "a*a*a*a*a*a*a*a*a*a*c"
+# s = "aa"
+# p = "a"
 so = Solution()
 if so.isMatch(s, p):
     print "True"
