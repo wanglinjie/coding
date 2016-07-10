@@ -25,6 +25,7 @@ return [3, 4]
         start = 0
         end = nums_len - 1
         result = []
+        # 寻找左侧数字左侧
         while start <= end:
             mid = start + (end - start) / 2
             if nums[mid] < target:
@@ -35,6 +36,7 @@ return [3, 4]
 
         start = 0
         end = nums_len - 1
+        # 寻找数字右侧
         while start <= end:
             mid = start + (end - start) / 2
             if (nums[mid] > target):
