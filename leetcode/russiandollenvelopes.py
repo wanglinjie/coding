@@ -53,6 +53,7 @@ the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,
                 else:
                     r = mid
             return l
+        # 排序
         envelopes.sort(cmp = lambda x,y: x[0]-y[0] if x[0] != y[0] else y[1]-x[1])
         # print envelopes
         n = len(envelopes)
