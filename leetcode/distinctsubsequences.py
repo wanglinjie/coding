@@ -23,6 +23,7 @@ Return 3.
         for i in xrange(len(s)):
             if s[i] not in s_dic:
                 s_dic[s[i]] = []
+            # 记录s中每个字符出现位置
             s_dic[s[i]].append(i)
         num = self.countDistinct(s_dic, t, [], {})
         return num
