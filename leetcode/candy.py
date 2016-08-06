@@ -19,9 +19,12 @@ What is the minimum candies you must give?
         people = len(ratings)
         left = [1] * people
         right = [1] * people
+
+        # 从左向右遍历，如果i元素大于i-1元素，则糖比i-1元素多一个，否则为1
         for i in xrange(1, people):
             if ratings[i] > ratings[i-1]:
                 left[i] = left[i-1]+1
+        # 从右向左遍历，如果i元素大于i+1元素，则糖比i+1元素多一个，否则为1
         for i in xrange(people-1-1, -1, -1):
             if ratings[i] > ratings[i+1]:
                 right[i] = right[i+1] + 1
