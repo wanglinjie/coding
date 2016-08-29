@@ -23,20 +23,40 @@ Could you implement it using only constant space complexity?
         """
 
         # 下面的实现比较low，没有按照要求来，使用空间为o(n)
-        nums_dic = {}
-        for i in nums:
-            if i not in nums_dic:
-                nums_dic[i] = 0
-            nums_dic[i] += 1
-        ret = []
-        for i in nums_dic:
-            if nums_dic[i] == 1:
-                ret.append(i)
-        if ret:
-            return ret
-        else:
+        # nums_dic = {}
+        # for i in nums:
+        #     if i not in nums_dic:
+        #         nums_dic[i] = 0
+        #     nums_dic[i] += 1
+        # ret = []
+        # for i in nums_dic:
+        #     if nums_dic[i] == 1:
+        #         ret.append(i)
+        # if ret:
+        #     return ret
+        # else:
+        #     return [0, 0]
+        if not nums:
             return [0, 0]
+        nums_len = len(nums)
+        num = 0
+        for i in nums:
+            num ^= i
+        mask = 1
+        while not (mask & num):
+            mask <<= 1
+        # print mask, num
+        have = 0
+        nohave = 0
+        for i in nums:
+            if i & mask:
+                have ^= i
+            else:
+                nohave ^= i
 
-nums = [1, 1, 2]
+        return [have, nohave]
+
+
+nums = [1, 1, 2, 3, 4, 4, 5, 6, 7, 6, 5, 7]
 so = Solution()
 print so.singleNumber(nums)
