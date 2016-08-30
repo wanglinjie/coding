@@ -32,7 +32,7 @@ public:
         for(int i = 2; i < size+2; ++i)
         {
             // 获取到i户人家，最大收益
-            ret[i] = max(ret[i-1], max(ret[i-2]+nums[i-2], nums[i-2]));
+            ret[i] = max(ret[i-1], ret[i-2]+nums[i-2]);
         }
         // 返回遍历到最后一户人家最大收益
         return ret[size+1];
