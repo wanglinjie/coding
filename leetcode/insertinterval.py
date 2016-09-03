@@ -35,6 +35,7 @@ This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
         for i in xrange(intervals_num):
             if newInterval.start <= intervals[i].end:
                 if newInterval.end < intervals[i].start:
+                    # 和其它interval不重合
                     results.append(newInterval)
                     results.extend(intervals[i:])
                     return results
@@ -47,10 +48,12 @@ This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
                         tempInterval.end = intervals[j].end
                         break
 
+                    # 到达最后一个元素
                     if (j + 1) == intervals_num:
                         tempInterval.end = max(intervals[j].end, newInterval.end)
                         break
 
+                    # 后一个元素的开始比当前end大
                     if (intervals[j+1].start > newInterval.end):
                         tempInterval.end = max(intervals[j].end, newInterval.end)
                         break
